@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Example Usage
 ```
+require 'eight_ball'
+
 # This could be read from the filesystem or be the response from an external service, etc.
 json_input = %(
   [{
@@ -39,7 +41,8 @@ json_input = %(
 )
 
 # Transform the JSON into a list of Features
-features = EightBall::Parsers::Json.new.parse json_input
+parser = EightBall::Parsers::Json.new
+features = parser.parse json_input
 
 # Tell EightBall about these Features
 EightBall.provider = EightBall::Providers::Static.new features
