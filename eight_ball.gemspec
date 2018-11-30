@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   ### DEPENDENCIES
+  spec.add_dependency 'plissken', '~> 1.2'
+
   # Development
   spec.add_development_dependency 'bundler', '~> 1.17'
   spec.add_development_dependency 'minitest', '~> 5.0'

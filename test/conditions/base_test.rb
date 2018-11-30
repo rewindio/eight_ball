@@ -9,6 +9,23 @@ describe EightBall::Conditions::Base do
     end
   end
 
+  describe 'parameter=' do
+    it 'should ensure parameter is in snake case' do
+      class DummyCondition < EightBall::Conditions::Base
+        def parameter=(parameter)
+          super parameter
+        end
+      end
+
+      condition = DummyCondition.new
+      condition.parameter = 'someCase'
+      condition.parameter.must_equal 'some_case'
+
+      condition.parameter = 'SomeCase'
+      condition.parameter.must_equal 'some_case'
+    end
+  end
+
   describe 'satisfied?' do
     it 'should raise' do
       e = -> { EightBall::Conditions::Base.new.satisfied? }.must_raise

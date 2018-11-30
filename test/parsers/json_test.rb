@@ -41,16 +41,16 @@ describe EightBall::Parsers::Json do
       features.size.must_equal 2
 
       features[0].name.must_equal 'NoConditions'
-      features[0].enabledFor.size.must_equal 0
-      features[0].disabledFor.size.must_equal 0
+      features[0].enabled_for.size.must_equal 0
+      features[0].disabled_for.size.must_equal 0
 
       features[1].name.must_equal 'WithConditions'
-      features[1].enabledFor.size.must_equal 1
-      features[1].enabledFor[0].is_a? EightBall::Conditions::List
-      features[1].enabledFor[0].parameter.must_equal 'param1'
-      features[1].enabledFor[0].values.must_equal [1, 2, 3, 4]
-      features[1].disabledFor.size.must_equal 1
-      features[1].disabledFor[0].is_a? EightBall::Conditions::Never
+      features[1].enabled_for.size.must_equal 1
+      features[1].enabled_for[0].is_a? EightBall::Conditions::List
+      features[1].enabled_for[0].parameter.must_equal 'param1'
+      features[1].enabled_for[0].values.must_equal [1, 2, 3, 4]
+      features[1].disabled_for.size.must_equal 1
+      features[1].disabled_for[0].is_a? EightBall::Conditions::Never
     end
   end
 end

@@ -9,7 +9,7 @@ describe EightBall::Feature do
       feature.enabled?.must_equal true
     end
 
-    it 'should return true if one of the enabledFor conditions is satisfied' do
+    it 'should return true if one of the enabled_for conditions is satisfied' do
       satisfied = EightBall::Conditions::Always.new
       unsatisfied = EightBall::Conditions::Never.new
 
@@ -17,7 +17,7 @@ describe EightBall::Feature do
       feature.enabled?.must_equal true
     end
 
-    it 'should return true if all of the enabledFor conditions are satisfied' do
+    it 'should return true if all of the enabled_for conditions are satisfied' do
       satisfied1 = EightBall::Conditions::Always.new
       satisfied2 = EightBall::Conditions::Always.new
 
@@ -25,7 +25,7 @@ describe EightBall::Feature do
       feature.enabled?.must_equal true
     end
 
-    it 'should return false if none of the enabledFor conditions are satisfied' do
+    it 'should return false if none of the enabled_for conditions are satisfied' do
       unsatisfied1 = EightBall::Conditions::Never.new
       unsatisfied2 = EightBall::Conditions::Never.new
 
@@ -33,7 +33,7 @@ describe EightBall::Feature do
       feature.enabled?.must_equal false
     end
 
-    it 'should return true if enabledFor satisfied and disabledFor not satisfied' do
+    it 'should return true if enabled_for satisfied and disabled_for not satisfied' do
       satisfied = EightBall::Conditions::Always.new
       unsatisfied = EightBall::Conditions::Never.new
 
@@ -41,21 +41,21 @@ describe EightBall::Feature do
       feature.enabled?.must_equal true
     end
 
-    it 'should return false if no enabledFor provided and disabledFor is satisfied' do
+    it 'should return false if no enabled_for provided and disabled_for is satisfied' do
       satisfied = EightBall::Conditions::Always.new
 
       feature = EightBall::Feature.new 'Feature', nil, [satisfied]
       feature.enabled?.must_equal false
     end
 
-    it 'should return true if no enabledFor provided and disabledFor is not satisfied' do
+    it 'should return true if no enabled_for provided and disabled_for is not satisfied' do
       unsatisfied = EightBall::Conditions::Never.new
 
       feature = EightBall::Feature.new 'Feature', nil, [unsatisfied]
       feature.enabled?.must_equal true
     end
 
-    it 'should return false if enabledFor is satisfied and disabledFor is satisfied' do
+    it 'should return false if enabled_for is satisfied and disabled_for is satisfied' do
       satisfied1 = EightBall::Conditions::Always.new
       satisfied2 = EightBall::Conditions::Always.new
 
