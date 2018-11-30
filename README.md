@@ -64,7 +64,7 @@ A Feature is a part of your application that can be enabled or disabled based on
 - `Always`:  This condition is always satisfied.
 - `List`: This condition is satisfied if the given value belongs to its list of accepted values.
 - `Never`: This condition is never satisfied.
-- `Range`: This condition is satisfied if the given value is within the specified range.
+- `Range`: This condition is satisfied if the given value is within the specified range (inclusive).
 
 ### Provider
 **Supported Providers**

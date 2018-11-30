@@ -32,8 +32,8 @@ module EightBall
     !enabled? name, options
   end
 
-  def self.with(name, options = {}, &block)
-    return unless block_given?
+  def self.with(name, options = {})
+    return false unless block_given?
     yield if enabled? name, options
   end
 end
