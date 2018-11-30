@@ -11,5 +11,12 @@ module EightBall::Conditions
     def satisfied?
       raise 'You can never satisfy the Base condition'
     end
+
+    protected
+    
+    def parameter=(parameter)
+      return if parameter.nil?
+      @parameter = parameter.gsub(/(.)([A-Z])/,'\1_\2').downcase
+    end
   end
 end
