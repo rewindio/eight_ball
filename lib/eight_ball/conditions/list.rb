@@ -2,7 +2,7 @@
 
 module EightBall::Conditions
   class List < Base
-    attr_accessor :values
+    attr_reader :values
 
     def initialize(options = {})
       options ||= {}

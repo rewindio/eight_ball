@@ -2,7 +2,7 @@
 
 module EightBall::Conditions
   class Range < Base
-    attr_accessor :min, :max
+    attr_reader :min, :max
     
     def initialize(options = {})
       options ||= {}

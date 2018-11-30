@@ -2,7 +2,7 @@
 
 module EightBall::Providers
   class Static
-    attr_accessor :features
+    attr_reader :features
 
     def initialize(features = [])
       @features = features
