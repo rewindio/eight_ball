@@ -10,8 +10,8 @@ describe EightBall::Conditions::Base do
   end
 
   describe 'satisfied?' do
-    it 'should raise an Exception' do
-      e = -> { EightBall::Conditions::Base.new.satisfied? }.must_raise Exception
+    it 'should raise' do
+      e = -> { EightBall::Conditions::Base.new.satisfied? }.must_raise
       e.message.must_equal 'You can never satisfy the Base condition'
     end
   end

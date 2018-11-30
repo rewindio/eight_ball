@@ -4,30 +4,36 @@ require 'test_helper'
 
 describe EightBall::Conditions::Range do
   describe 'initialize' do
-    it 'should ensure max is greater than min' do
-      EightBall::Conditions::Range.new(min: 3, max: 1).max.must_equal 3
-      EightBall::Conditions::Range.new(min: 'c', max: 'a').max.must_equal 'c'
-    end
+    
 
     it 'should set parameter' do
       EightBall::Conditions::Range.new(parameter: 'a', min: 1, max: 3).parameter.must_equal 'a'
     end
 
-    it 'should raise Exception if min is missing' do
-      e1 = -> { EightBall::Conditions::Range.new(max: 3) }.must_raise Exception
+    it 'should raise if min is missing' do
+      e1 = -> { EightBall::Conditions::Range.new(max: 3) }.must_raise ArgumentError
       e1.message.must_equal 'Missing value for min'
 
-      e2 = -> { EightBall::Conditions::Range.new(parameter: 'a', max: 3) }.must_raise Exception
+      e2 = -> { EightBall::Conditions::Range.new(parameter: 'a', max: 3) }.must_raise ArgumentError
       e2.message.must_equal 'Missing value for min'
     end
 
-    it 'should raise Exception if max is missing' do
-      e1 = -> { EightBall::Conditions::Range.new(min: 3)}.must_raise Exception
+    it 'should raise if max is missing' do
+      e1 = -> { EightBall::Conditions::Range.new(min: 3)}.must_raise ArgumentError
       e1.message.must_equal 'Missing value for max'
       
 
-      e2 = -> { EightBall::Conditions::Range.new(parameter: 'a', min: 3) }.must_raise Exception
+      e2 = -> { EightBall::Conditions::Range.new(parameter: 'a', min: 3) }.must_raise ArgumentError
       e2.message.must_equal 'Missing value for max'
+    end
+
+    it 'should raise if max is less than min' do
+      e1 = -> { EightBall::Conditions::Range.new(min: 3, max: 1) }.must_raise ArgumentError
+      e1.message.must_equal 'Max must be greater or equal to min'
+
+
+      e2 = -> { EightBall::Conditions::Range.new(min: 'c', max: 'a') }.must_raise ArgumentError
+      e2.message.must_equal 'Max must be greater or equal to min'
     end
   end
 
