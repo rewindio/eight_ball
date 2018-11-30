@@ -3,11 +3,11 @@
 module EightBall::Conditions
   def self.by_name(name)
     mappings = {
-      'always' => EightBall::Conditions::Always,
-      'list' => EightBall::Conditions::List,
-      'never' => EightBall::Conditions::Never,
-      'range' => EightBall::Conditions::Range
+      always: EightBall::Conditions::Always,
+      list: EightBall::Conditions::List,
+      never: EightBall::Conditions::Never,
+      range: EightBall::Conditions::Range
     }
-    mappings[name.downcase]
+    mappings[name.downcase.to_sym]
   end
 end
