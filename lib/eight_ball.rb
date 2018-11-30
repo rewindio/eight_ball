@@ -32,7 +32,7 @@ module EightBall
   end
 
   def self.with(name, options = {})
-    return unless block_given?
+    return false unless block_given?
     yield if enabled? name, options
   end
 end

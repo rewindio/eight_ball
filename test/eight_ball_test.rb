@@ -57,5 +57,9 @@ describe EightBall do
         flunk 'Should not have yielded for DoesNotExist'
       end
     end
+
+    it 'should should return false if no block given' do
+      EightBall.with('DoesNotExist').must_equal false
+    end
   end
 end
