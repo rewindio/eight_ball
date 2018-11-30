@@ -40,10 +40,10 @@ describe EightBall::Providers::Http do
     it 'should use provided parser to parse response' do
       Net::HTTP.stubs(:get).returns @file
 
-      stub_parser = stub()
-      stub_parser.stubs(:parse).once.returns []
+      stub_parser = stub
+      stub_parser.stubs(:parse).once.returns ['features']
 
-      EightBall::Providers::Http.new(@uri, stub_parser).features.must_equal []
+      EightBall::Providers::Http.new(@uri, parser: stub_parser).features.must_equal ['features']
     end
   end
 end
