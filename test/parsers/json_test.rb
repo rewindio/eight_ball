@@ -15,7 +15,7 @@ describe EightBall::Parsers::Json do
         }
       )
 
-      e = -> { @parser.parse(json) }.must_raise Exception
+      e = -> { @parser.parse(json) }.must_raise ArgumentError
       e.message.must_equal 'JSON input was not an array'
     end
 
