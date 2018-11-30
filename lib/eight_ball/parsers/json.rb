@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
+require 'plissken'
+
 module EightBall::Parsers
   class Json
     def parse(raw)
-      parsed = JSON.parse raw, :symbolize_names => true
+      parsed = JSON.parse(raw, :symbolize_names => true).to_snake_keys
 
       raise ArgumentError, 'JSON input was not an array' unless parsed.is_a? Array
 
       parsed.map do |feature|
-        enabledFor = create_conditions feature[:enabledFor]
-        disabledFor = create_conditions feature[:disabledFor]
+        enabled_for = create_conditions feature[:enabled_for]
+        disabled_for = create_conditions feature[:disabled_for]
 
-        EightBall::Feature.new feature[:name], enabledFor, disabledFor
+        EightBall::Feature.new feature[:name], enabled_for, disabled_for
       end
     end
 

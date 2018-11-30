@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     eight_ball (1.0.0.pre.1)
+      plissken
 
 GEM
   remote: https://rubygems.org/
@@ -20,6 +21,7 @@ GEM
       ruby-progressbar
     mocha (1.7.0)
       metaclass (~> 0.0.1)
+    plissken (1.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)

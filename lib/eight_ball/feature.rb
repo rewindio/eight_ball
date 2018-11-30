@@ -2,19 +2,19 @@
 
 module EightBall
   class Feature
-    attr_accessor :name, :enabledFor, :disabledFor
+    attr_accessor :name, :enabled_for, :disabled_for
     
-    def initialize(name, enabledFor = [], disabledFor = [])
+    def initialize(name, enabled_for = [], disabled_for = [])
       @name = name
-      @enabledFor = Array(enabledFor)
-      @disabledFor = Array(disabledFor)
+      @enabled_for = Array enabled_for
+      @disabled_for = Array disabled_for
     end
 
     def enabled?(options = {})
-      return true if @enabledFor.empty? && @disabledFor.empty?
-      return true if @enabledFor.empty? && !any_satisfied?(@disabledFor, options)
+      return true if @enabled_for.empty? && @disabled_for.empty?
+      return true if @enabled_for.empty? && !any_satisfied?(@disabled_for, options)
 
-      any_satisfied?(@enabledFor, options) && !any_satisfied?(@disabledFor, options)
+      any_satisfied?(@enabled_for, options) && !any_satisfied?(@disabled_for, options)
     end
 
     private
