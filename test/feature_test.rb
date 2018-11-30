@@ -67,7 +67,7 @@ describe EightBall::Feature do
       condition = EightBall::Conditions::List.new parameter: 'param1', values: [1, 2]
       feature = EightBall::Feature.new 'Feature', condition
 
-      e = -> { feature.enabled? }.must_raise Exception
+      e = -> { feature.enabled? }.must_raise ArgumentError
       e.message.must_equal 'Missing parameter param1'
     end
   end
