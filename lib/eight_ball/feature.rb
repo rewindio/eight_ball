@@ -24,7 +24,7 @@ module EightBall
         return condition.satisfied? if condition.parameter.nil?
 
         value = options[condition.parameter.to_sym]
-        raise Exception, "Missing parameter #{condition.parameter}" if value.nil?
+        raise ArgumentError, "Missing parameter #{condition.parameter}" if value.nil?
 
         condition.satisfied? value
       end
