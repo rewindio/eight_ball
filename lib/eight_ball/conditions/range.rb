@@ -7,8 +7,8 @@ module EightBall::Conditions
     def initialize(options = {})
       options ||= {}
 
-      raise Exception.new 'Missing value for min' if options[:min].nil?
-      raise Exception.new 'Missing value for max' if options[:max].nil?
+      raise Exception, 'Missing value for min' if options[:min].nil?
+      raise Exception, 'Missing value for max' if options[:max].nil?
 
       @min = options[:min]
       @max = options[:max] > min ? options[:max] : min

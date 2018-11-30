@@ -9,7 +9,7 @@ module EightBall::Conditions
     end
 
     def satisfied?
-      raise Exception.new 'You can never satisfy the Base condition'
+      raise Exception, 'You can never satisfy the Base condition'
     end
   end
 end

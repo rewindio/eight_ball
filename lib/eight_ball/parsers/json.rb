@@ -5,7 +5,7 @@ module EightBall::Parsers
     def parse(raw)
       parsed = JSON.parse raw, :symbolize_names => true
 
-      raise Exception.new('JSON input was not an array') unless parsed.is_a? Array
+      raise Exception, 'JSON input was not an array' unless parsed.is_a? Array
 
       parsed.map do |feature|
         enabledFor = create_conditions feature[:enabledFor]

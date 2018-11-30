@@ -13,6 +13,7 @@ require 'eight_ball/conditions/range'
 
 require 'eight_ball/parsers/json'
 
+require 'eight_ball/providers/http'
 require 'eight_ball/providers/static'
 
 module EightBall
