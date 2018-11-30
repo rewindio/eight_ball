@@ -8,6 +8,3 @@ require 'eight_ball'
 
 require 'pry-byebug'
 Pry.start
-
-require 'irb'
-IRB.start(__FILE__)
