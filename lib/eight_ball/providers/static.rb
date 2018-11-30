@@ -5,7 +5,7 @@ module EightBall::Providers
     attr_reader :features
 
     def initialize(features = [])
-      @features = features
+      @features = Array features
     end
   end
 end
