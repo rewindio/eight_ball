@@ -52,6 +52,8 @@ EightBall.enabled? "Feature1", { accountId: 4 } # true
 EightBall.enabled? "Feature1", { accountId: 2 } # false
 ```
 
+More examples [here](examples)
+
 ## Concepts
 ### Feature
 A Feature is a part of your application that can be enabled or disabled based on various conditions. It has the following attributes:
@@ -63,28 +65,28 @@ A Feature is a part of your application that can be enabled or disabled based on
 A Condition must either be `true` or `false`. It describes when a Feature is enabled or disabled.
 
 **Supported Conditions**
-- `Always`:  This condition is always satisfied.
-- `List`: This condition is satisfied if the given value belongs to its list of accepted values.
-- `Never`: This condition is never satisfied.
-- `Range`: This condition is satisfied if the given value is within the specified range (inclusive).
+- [Always](lib/eight_ball/conditions/always.rb):  This condition is always satisfied.
+- [List](lib/eight_ball/conditions/list.rb): This condition is satisfied if the given value belongs to its list of accepted values.
+- [Never](lib/eight_ball/conditions/never.rb): This condition is never satisfied.
+- [Range]((lib/eight_ball/conditions/range.rb): This condition is satisfied if the given value is within the specified range (inclusive).
 
 ### Provider
 **Supported Providers**
 A Provider is able to give EightBall the list of Features it needs to answer queries.
-- `HTTP`: Connect to a URL and use the given Parser to convert the response into a list of Features.
-- `Static`: Once initialized with a list of Features, always provides that same list of Features.
+- [HTTP](lib/eight_ball/providers/http.rb): Connect to a URL and use the given Parser to convert the response into a list of Features.
+- [Static](lib/eight_ball/providers/static.rb): Once initialized with a list of Features, always provides that same list of Features.
 
 #### RefreshPolicies
 Some Providers are able to automatically "refresh" their list of Features using a RefreshPolicy.
 
 **Supported RefreshPolicies**
-- `Interval`: The data is considered fresh for a given number of seconds, after which it is considered stale and should be refreshed.
+- [Interval](lib/eight_ball/providers/refresh_policies/interval.rb): The data is considered fresh for a given number of seconds, after which it is considered stale and should be refreshed.
 
 ### Parser
 A Parser converts the given input to an array of Features.
 
 **Supported Parsers**
-- `JSON`
+- [JSON](lib/eight_ball/parsers/json.rb)
 
 ## Development
 
