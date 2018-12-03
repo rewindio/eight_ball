@@ -68,7 +68,7 @@ A Condition must either be `true` or `false`. It describes when a Feature is ena
 - [Always](lib/eight_ball/conditions/always.rb):  This condition is always satisfied.
 - [List](lib/eight_ball/conditions/list.rb): This condition is satisfied if the given value belongs to its list of accepted values.
 - [Never](lib/eight_ball/conditions/never.rb): This condition is never satisfied.
-- [Range]((lib/eight_ball/conditions/range.rb): This condition is satisfied if the given value is within the specified range (inclusive).
+- [Range](lib/eight_ball/conditions/range.rb): This condition is satisfied if the given value is within the specified range (inclusive).
 
 ### Provider
 **Supported Providers**
