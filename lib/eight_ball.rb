@@ -16,6 +16,8 @@ require 'eight_ball/parsers/json'
 require 'eight_ball/providers/http'
 require 'eight_ball/providers/static'
 
+require 'eight_ball/providers/refresh_policies/interval'
+
 module EightBall
   def self.provider=(provider)
     @@provider = provider
