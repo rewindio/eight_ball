@@ -30,4 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mocha', '~> 1.7'
   spec.add_development_dependency 'pry-byebug', '~> 3.6'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'simplecov', '~> 0.16'
+  spec.add_development_dependency 'simplecov-console', '~> 0.4'
 end

@@ -19,7 +19,7 @@ describe EightBall::Providers::RefreshPolicies::Interval do
       policy = EightBall::Providers::RefreshPolicies::Interval.new
 
       d1 = DateTime.now
-      d2 = d1 + Rational(60, 86_400)
+      d2 = d1 + Rational(61, 86_400)
       DateTime.stubs(:now).returns d1, d2
 
       policy.refresh {}

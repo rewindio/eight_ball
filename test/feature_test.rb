@@ -70,5 +70,13 @@ describe EightBall::Feature do
       e = -> { feature.enabled? }.must_raise ArgumentError
       e.message.must_equal 'Missing parameter param1'
     end
+
+    it 'should pass parameter to satisfied?' do
+      condition = EightBall::Conditions::List.new parameter: 'param1', values: [1, 2]
+      condition.stubs(:satisfied?).once.with 1
+
+      feature = EightBall::Feature.new 'Feature', condition
+      feature.enabled? param1: 1
+    end
   end
 end
