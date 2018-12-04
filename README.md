@@ -55,6 +55,7 @@ EightBall.enabled? "Feature1", { accountId: 2 } # false
 More examples [here](examples)
 
 ## Concepts
+
 ### Feature
 A Feature is a part of your application that can be enabled or disabled based on various conditions. It has the following attributes:
 - `name`: The unique name of the Feature.
@@ -71,8 +72,9 @@ A Condition must either be `true` or `false`. It describes when a Feature is ena
 - [Range](lib/eight_ball/conditions/range.rb): This condition is satisfied if the given value is within the specified range (inclusive).
 
 ### Provider
-**Supported Providers**
 A Provider is able to give EightBall the list of Features it needs to answer queries.
+
+**Supported Providers**
 - [HTTP](lib/eight_ball/providers/http.rb): Connect to a URL and use the given Parser to convert the response into a list of Features.
 - [Static](lib/eight_ball/providers/static.rb): Once initialized with a list of Features, always provides that same list of Features.
 
