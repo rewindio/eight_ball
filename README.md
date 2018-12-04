@@ -96,6 +96,9 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 
+### Documenting
+Documentation is written using [yard](https://yardoc.org/) syntax. You can view the generated docs by running `yard server` and going to `http://127.0.0.1:8808/docs/EightBall`
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/rewindio/eight_ball.
