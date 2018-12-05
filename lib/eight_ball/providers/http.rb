@@ -48,12 +48,10 @@ module EightBall::Providers
     private
 
     def fetch
-      begin
-        @features = @parser.parse Net::HTTP.get(@uri)
-      rescue => e
-        EightBall.logger.error { "Failed to fetch data from #{@uri}: #{e.message}" }
-        @features = []
-      end
+      @features = @parser.parse Net::HTTP.get(@uri)
+    rescue => e
+      EightBall.logger.error { "Failed to fetch data from #{@uri}: #{e.message}" }
+      @features = []
     end
   end
 end
