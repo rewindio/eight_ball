@@ -52,7 +52,10 @@ EightBall.enabled? "Feature1", { accountId: 4 } # true
 EightBall.enabled? "Feature1", { accountId: 2 } # false
 ```
 
+More examples [here](examples)
+
 ## Concepts
+
 ### Feature
 A Feature is a part of your application that can be enabled or disabled based on various conditions. It has the following attributes:
 - `name`: The unique name of the Feature.
@@ -60,27 +63,41 @@ A Feature is a part of your application that can be enabled or disabled based on
 - `disabledFor`: An array of Conditions for which the Feature is disabled.
 
 ### Condition
+A Condition must either be `true` or `false`. It describes when a Feature is enabled or disabled.
+
 **Supported Conditions**
-- `Always`:  This condition is always satisfied.
-- `List`: This condition is satisfied if the given value belongs to its list of accepted values.
-- `Never`: This condition is never satisfied.
-- `Range`: This condition is satisfied if the given value is within the specified range (inclusive).
+- [Always](lib/eight_ball/conditions/always.rb):  This condition is always satisfied.
+- [List](lib/eight_ball/conditions/list.rb): This condition is satisfied if the given value belongs to its list of accepted values.
+- [Never](lib/eight_ball/conditions/never.rb): This condition is never satisfied.
+- [Range](lib/eight_ball/conditions/range.rb): This condition is satisfied if the given value is within the specified range (inclusive).
 
 ### Provider
-**Supported Providers**
 A Provider is able to give EightBall the list of Features it needs to answer queries.
-- `Static`: Once initialized with a list of Features, always provides that same list of Features.
+
+**Supported Providers**
+- [HTTP](lib/eight_ball/providers/http.rb): Connect to a URL and use the given Parser to convert the response into a list of Features.
+- [Static](lib/eight_ball/providers/static.rb): Once initialized with a list of Features, always provides that same list of Features.
+
+#### RefreshPolicies
+Some Providers are able to automatically "refresh" their list of Features using a RefreshPolicy.
+
+**Supported RefreshPolicies**
+- [Interval](lib/eight_ball/providers/refresh_policies/interval.rb): The data is considered fresh for a given number of seconds, after which it is considered stale and should be refreshed.
+
 ### Parser
 A Parser converts the given input to an array of Features.
 
 **Supported Parsers**
-- `JSON`
+- [JSON](lib/eight_ball/parsers/json.rb)
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`.
+
+### Documenting
+Documentation is written using [yard](https://yardoc.org/) syntax. You can view the generated docs by running `yard server` and going to `http://127.0.0.1:8808/docs/EightBall`
 
 ## Contributing
 
