@@ -21,7 +21,6 @@ require 'eight_ball/providers/refresh_policies/interval'
 require 'logger'
 
 # For all your feature querying needs.
-
 module EightBall
   # Sets the {EightBall::Providers Provider} instance EightBall
   # will use to obtain your list of {EightBall::Feature Features}.
