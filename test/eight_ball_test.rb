@@ -64,6 +64,10 @@ describe EightBall do
   end
 
   describe 'logger=' do
+    after do
+      EightBall.logger = nil
+    end
+
     it 'should use provided logger' do
       stub_logger = stub()
       stub_logger.expects(:warn).once.with 'yes'
