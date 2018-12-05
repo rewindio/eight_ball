@@ -54,7 +54,7 @@ describe EightBall::Parsers::Json do
     end
 
     it 'should default to [] if parsing error occurs' do
-      JSON.stubs(:parse).raises StandardError
+      JSON.stubs(:parse).raises JSON::ParserError
 
       features = @parser.parse ''
 
