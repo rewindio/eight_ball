@@ -52,5 +52,13 @@ describe EightBall::Parsers::Json do
       features[1].disabled_for.size.must_equal 1
       features[1].disabled_for[0].is_a? EightBall::Conditions::Never
     end
+
+    it 'should default to [] if parsing error occurs' do
+      JSON.stubs(:parse).raises StandardError
+
+      features = @parser.parse ''
+
+      features.must_equal []
+    end
   end
 end

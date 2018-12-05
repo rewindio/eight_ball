@@ -43,7 +43,13 @@ module EightBall::Parsers
     #   parser = EightBall::Parsers::Json.new
     #   parser.parse json_string => [Features]
     def parse(json)
-      parsed = JSON.parse(json, :symbolize_names => true).to_snake_keys
+      parsed = nil
+      begin
+        parsed = JSON.parse(json, :symbolize_names => true).to_snake_keys
+      rescue => e
+        EightBall.logger.error { "Failed to parse JSON: #{e.message}" }
+        return []
+      end
 
       raise ArgumentError, 'JSON input was not an array' unless parsed.is_a? Array
 

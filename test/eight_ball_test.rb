@@ -62,4 +62,14 @@ describe EightBall do
       EightBall.with('DoesNotExist').must_equal false
     end
   end
+
+  describe 'logger=' do
+    it 'should use provided logger' do
+      stub_logger = stub()
+      stub_logger.expects(:warn).once.with 'yes'
+
+      EightBall.logger = stub_logger
+      EightBall.logger.warn 'yes'
+    end
+  end
 end

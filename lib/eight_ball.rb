@@ -18,7 +18,10 @@ require 'eight_ball/providers/static'
 
 require 'eight_ball/providers/refresh_policies/interval'
 
+require 'logger'
+
 # For all your feature querying needs.
+
 module EightBall
   # Sets the {EightBall::Providers Provider} instance EightBall
   # will use to obtain your list of {EightBall::Feature Features}.
@@ -28,7 +31,7 @@ module EightBall
   # @example
   #   EightBall.provider = EightBall::Providers::Http.new 'http://www.rewind.io'
   def self.provider=(provider)
-    @@provider = provider
+    @provider = provider
   end
 
   # "EightBall, is the feature named 'NewFeature' enabled?"
@@ -43,7 +46,7 @@ module EightBall
   # @example
   #   EightBall.enabled? 'feature1', account_id: 1
   def self.enabled?(name, parameters = {})
-    feature = @@provider.features.find { |f| f.name == name }
+    feature = @provider.features.find { |f| f.name == name }
     return false unless feature
 
     feature.enabled? parameters
@@ -81,5 +84,15 @@ module EightBall
     return false unless block_given?
 
     yield if enabled? name, parameters
+  end
+
+  def self.logger
+    @logger ||= Logger.new(STDOUT).tap do |log|
+      log.progname = self.name
+    end
+  end
+
+  def self.logger=(logger)
+    @logger = logger
   end
 end

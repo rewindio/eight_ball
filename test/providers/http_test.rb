@@ -59,4 +59,12 @@ describe EightBall::Providers::Http do
       EightBall::Providers::Http.new(@uri, parser: stub_parser).features.must_equal ['features']
     end
   end
+
+  describe 'fetch' do
+    it 'should default to [] if error occurs' do
+      Net::HTTP.stubs(:get).raises StandardError
+
+      EightBall::Providers::Http.new(@uri).features.must_equal []
+    end
+  end
 end
