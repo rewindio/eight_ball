@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Rewind.io']
   spec.email         = ['team@rewind.io']
 
-  spec.summary       = ''
+  spec.summary       = 'The most cost efficient way to flag features'
   spec.description   = 'Ask questions about flagged features'
   spec.homepage      = 'https://github.com/rewindio/eight_ball'
   spec.license       = 'MIT'
