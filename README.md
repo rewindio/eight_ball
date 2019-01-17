@@ -1,5 +1,5 @@
 # EightBall
-[![Build Status](https://travis-ci.com/rewindio/eight_ball.svg?token=2toDwh2UkVcJs8RE5coA&branch=dev)](https://travis-ci.com/rewindio/eight_ball)
+[![Build Status](https://travis-ci.org/rewindio/eight_ball.svg?branch=dev)](https://travis-ci.org/rewindio/eight_ball)
 
 EightBall is a feature toggle querying gem
 
