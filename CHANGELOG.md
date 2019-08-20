@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.4]
+Update .travis.yml
+
 ## [1.0.3]
 Update .travis.yml
 

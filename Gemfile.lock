@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eight_ball (1.0.2)
+    eight_ball (1.0.4)
       plissken (~> 1.2)
 
 GEM
