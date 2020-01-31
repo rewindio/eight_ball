@@ -1,0 +1,41 @@
+name: upgrade-pre-release
+
+on:
+  push:
+    branches: 
+      - feature/11351_rails_6_upgrade
+    paths: 'lib/*/version.rb'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Get version
+      id: get_version
+      run: |
+        version_file=$(find ./lib -name version.rb)
+        version=$(grep VERSION $version_file |cut -f 2 -d= |tr -d \'|tr -d [:space:])
+        echo ::set-output name=version::$version
+        echo ::set-output name=version_tag::v$version
+
+    - name: Upload to Gemfury
+      env:
+        GEMFURY_TOKEN: ${{ secrets.GEMFURY_TOKEN }}
+      run: |
+        gemspec=$(ls *gemspec* | head -1)
+        gem build $gemspec
+        gem_name=$(ls -t *.gem | head -1)
+        output=$(curl -sS -F package=@"$gem_name"  https://"$GEMFURY_TOKEN"@push.fury.io/thirdblink/)
+
+        if [[ $output != *"ok"* ]]; then
+          echo "Error uploading to Gemfury"
+          exit 1
+        fi
