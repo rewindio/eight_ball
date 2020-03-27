@@ -23,16 +23,17 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   ### DEPENDENCIES
-  spec.add_dependency 'plissken', '~> 1.2'
+  spec.add_dependency 'plissken', '1.3.0'
 
   # Development
-  spec.add_development_dependency 'bundler', '~> 1.17'
-  spec.add_development_dependency 'inch', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'minitest-reporters', '~> 1.3'
-  spec.add_development_dependency 'mocha', '~> 1.7'
-  spec.add_development_dependency 'pry-byebug', '~> 3.6'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'simplecov', '~> 0.16'
-  spec.add_development_dependency 'simplecov-console', '~> 0.4'
+  spec.add_development_dependency 'bundler', '1.17.2'
+  spec.add_development_dependency 'inch', '0.8.0'
+  spec.add_development_dependency 'minitest', '5.11.3'
+  spec.add_development_dependency 'minitest-reporters', '1.3.5'
+  spec.add_development_dependency 'mocha', '1.7.0'
+  spec.add_development_dependency 'pry', '0.12.2'
+  spec.add_development_dependency 'pry-byebug', '3.8.0'
+  spec.add_development_dependency 'rake', '10.5.0'
+  spec.add_development_dependency 'simplecov', '0.16.1'
+  spec.add_development_dependency 'simplecov-console', '0.4.2'
 end
