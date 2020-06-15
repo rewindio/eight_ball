@@ -4,7 +4,7 @@ module EightBall::Conditions
   class Base
     attr_reader :parameter
 
-    def initialize(options = [])
+    def initialize(_options = [])
       @parameter = nil
     end
 
@@ -16,7 +16,8 @@ module EightBall::Conditions
 
     def parameter=(parameter)
       return if parameter.nil?
-      @parameter = parameter.gsub(/(.)([A-Z])/,'\1_\2').downcase
+
+      @parameter = parameter.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
   end
 end

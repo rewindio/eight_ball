@@ -7,19 +7,19 @@ RSpec.describe EightBall::Conditions::Range do
     end
 
     it 'should raise if min is missing' do
-      expect{ EightBall::Conditions::Range.new(max: 3) }.to raise_error ArgumentError, 'Missing value for min'
+      expect { EightBall::Conditions::Range.new(max: 3) }.to raise_error ArgumentError, 'Missing value for min'
 
-      expect{ EightBall::Conditions::Range.new(parameter: 'a', max: 3) }.to raise_error ArgumentError, 'Missing value for min'
+      expect { EightBall::Conditions::Range.new(parameter: 'a', max: 3) }.to raise_error ArgumentError, 'Missing value for min'
     end
 
     it 'should raise if max is missing' do
-      expect{ EightBall::Conditions::Range.new(min: 3)}.to raise_error ArgumentError, 'Missing value for max'
-      expect{ EightBall::Conditions::Range.new(parameter: 'a', min: 3) }.to raise_error ArgumentError, 'Missing value for max'
+      expect { EightBall::Conditions::Range.new(min: 3) }.to raise_error ArgumentError, 'Missing value for max'
+      expect { EightBall::Conditions::Range.new(parameter: 'a', min: 3) }.to raise_error ArgumentError, 'Missing value for max'
     end
 
     it 'should raise if max is less than min' do
-      expect{ EightBall::Conditions::Range.new(min: 3, max: 1) }.to raise_error ArgumentError, 'Max must be greater or equal to min'
-      expect{ EightBall::Conditions::Range.new(min: 'c', max: 'a') }.to raise_error ArgumentError, 'Max must be greater or equal to min'
+      expect { EightBall::Conditions::Range.new(min: 3, max: 1) }.to raise_error ArgumentError, 'Max must be greater or equal to min'
+      expect { EightBall::Conditions::Range.new(min: 'c', max: 'a') }.to raise_error ArgumentError, 'Max must be greater or equal to min'
     end
   end
 

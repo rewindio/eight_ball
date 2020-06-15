@@ -1,4 +1,4 @@
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 
 begin
   require 'rspec/core/rake_task'
@@ -6,4 +6,4 @@ begin
 rescue LoadError
 end
 
-task :default => :spec
+task default: :spec

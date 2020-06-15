@@ -13,7 +13,7 @@ RSpec.describe EightBall::Parsers::Json do
         }
       )
 
-      expect{ @parser.parse(json) }.to raise_error ArgumentError, 'JSON input was not an array'
+      expect { @parser.parse(json) }.to raise_error ArgumentError, 'JSON input was not an array'
     end
 
     it 'should convert JSON into an array of Features' do

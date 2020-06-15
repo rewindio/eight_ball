@@ -43,7 +43,7 @@ module EightBall::Parsers
     #   parser = EightBall::Parsers::Json.new
     #   parser.parse json_string => [Features]
     def parse(json)
-      parsed = JSON.parse(json, :symbolize_names => true).to_snake_keys
+      parsed = JSON.parse(json, symbolize_names: true).to_snake_keys
 
       raise ArgumentError, 'JSON input was not an array' unless parsed.is_a? Array
 

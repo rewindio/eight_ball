@@ -23,8 +23,8 @@ require 'eight_ball/providers/static'
 
 require 'eight_ball/providers/refresh_policies/interval'
 
-require 'net/http' # TODO Move?
-require 'json' # TODO Move?
+require 'net/http' # TODO: Move?
+require 'json' # TODO: Move?
 require 'logger'
 
 # For all your feature querying needs.
@@ -94,7 +94,7 @@ module EightBall
 
   def self.logger
     @logger ||= Logger.new(STDOUT).tap do |log|
-      log.progname = self.name
+      log.progname = name
     end
   end
 
