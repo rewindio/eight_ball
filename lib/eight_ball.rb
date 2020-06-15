@@ -33,6 +33,16 @@ module EightBall
     @provider = provider
   end
 
+  # Serves as a shortcut to access the {EightBall::Feature Features} available
+  # on the configured {EightBall::Providers Provider}
+  #
+  # @return [Array<EightBall::Feature>]
+  def self.features
+    raise 'No Provider has been configured; there can be no features. Please see "EightBall.provider="' unless @provider
+
+    @provider.features
+  end
+
   # "EightBall, is the feature named 'NewFeature' enabled?"
   #
   # @return whether or not the {EightBall::Feature} is enabled.
