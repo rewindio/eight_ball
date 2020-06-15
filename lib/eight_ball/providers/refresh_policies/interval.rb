@@ -7,7 +7,7 @@ module EightBall::Providers::RefreshPolicies
   # amount of time, after which it is considered stale and should be refreshed.
   class Interval
     SECONDS_IN_A_DAY = 86_400
-    
+
     # Creates a new instance of an Interval RefreshPolicy.
     #
     # @param seconds [Integer] The number of seconds the data is considered fresh.

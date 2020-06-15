@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.5.0'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|.github|examples)/}) }
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|.github|examples)/}) }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
@@ -28,11 +28,9 @@ Gem::Specification.new do |spec|
   # Development
   spec.add_development_dependency 'bundler', '~> 1.17'
   spec.add_development_dependency 'inch', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'minitest-reporters', '~> 1.3'
-  spec.add_development_dependency 'mocha', '~> 1.7'
   spec.add_development_dependency 'pry-byebug', '~> 3.6'
   spec.add_development_dependency 'rake', '~> 12.3.3'
+  spec.add_development_dependency 'rspec', '~> 3.9.0'
   spec.add_development_dependency 'simplecov', '~> 0.16'
   spec.add_development_dependency 'simplecov-console', '~> 0.4'
 end

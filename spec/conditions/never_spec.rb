@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require 'test_helper'
-
-describe EightBall::Conditions::Never do
+RSpec.describe EightBall::Conditions::Never do
   it 'should not require a parameter' do
-    EightBall::Conditions::Never.new.parameter.must_be_nil
+   expect(EightBall::Conditions::Never.new.parameter).to be_nil
   end
-  
+
   describe 'satifisfied?' do
     it 'should return false' do
       always = EightBall::Conditions::Never.new
-      always.satisfied?.must_equal false
+      expect(always.satisfied?).to be false
     end
   end
 end

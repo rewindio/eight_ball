@@ -44,7 +44,7 @@ module EightBall::Parsers
     #   parser.parse json_string => [Features]
     def parse(json)
       parsed = JSON.parse(json, :symbolize_names => true).to_snake_keys
-      
+
       raise ArgumentError, 'JSON input was not an array' unless parsed.is_a? Array
 
       parsed.map do |feature|
