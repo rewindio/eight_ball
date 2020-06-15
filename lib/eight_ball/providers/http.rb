@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 module EightBall::Providers
   # An HTTP Provider will make a GET request to a given URI, and convert
   # the response into an array of {EightBall::Feature Features} using the

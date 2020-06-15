@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-# project_root = File.dirname(File.absolute_path(__FILE__))
-# Dir.glob(project_root + '/eight_ball/*') {|file| require file}
-
-# Dir.glob('**/*.rb') { |f| puts f; require_relative f }
-
 require 'eight_ball/version'
 require 'eight_ball/feature'
 
@@ -23,8 +18,6 @@ require 'eight_ball/providers/static'
 
 require 'eight_ball/providers/refresh_policies/interval'
 
-require 'net/http' # TODO: Move?
-require 'json' # TODO: Move?
 require 'logger'
 
 # For all your feature querying needs.
