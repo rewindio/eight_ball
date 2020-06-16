@@ -12,6 +12,8 @@ module EightBall::Providers
   class Http
     SUPPORTED_SCHEMES = %w[http https].freeze
 
+    attr_reader :marshaller
+
     # @param uri [String] The URI to GET the {EightBall::Feature Features} from.
     # @param options [Hash] The options to create the Provider with.
     #

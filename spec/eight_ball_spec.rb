@@ -84,5 +84,44 @@ describe EightBall do
         expect(EightBall.with('EnabledFeature')).to be false
       end
     end
+
+    describe 'marshall' do
+      it 'uses the given Marshaller' do
+        marshaller_double = double
+
+        expect(marshaller_double).to receive(:marshall)
+
+        EightBall.marshall(marshaller_double)
+      end
+
+      it 'falls back to the Marshaller exposed by the Provider if none is passed in' do
+        # Just hacks so I can swap out the Provider in this test only
+        original_provider = @provider
+
+        class FakeProvider
+          attr_reader :marshaller
+          attr_reader :features
+          def initialize(marshaller)
+            @marshaller = marshaller
+            @features = []
+          end
+        end
+
+        marshaller_double = double
+        EightBall.provider = FakeProvider.new marshaller_double
+
+        expect(marshaller_double).to receive(:marshall)
+
+        EightBall.marshall
+
+        # Set it back.
+        @provider = original_provider
+      end
+
+      it 'falls back to a JSON Marshaller if all else fails' do
+        expect_any_instance_of(EightBall::Marshallers::Json).to receive(:marshall)
+        EightBall.marshall
+      end
+    end
   end
 end

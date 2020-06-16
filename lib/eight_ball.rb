@@ -33,6 +33,14 @@ module EightBall
     @provider = provider
   end
 
+  # Gets the {EightBall::Providers Provider} instance
+  # EightBall is configured to use
+  #
+  # @return {EightBall::Providers Provider}
+  def self.provider
+    @provider
+  end
+
   # Serves as a shortcut to access the {EightBall::Feature Features} available
   # on the configured {EightBall::Providers Provider}
   #
@@ -40,7 +48,7 @@ module EightBall
   def self.features
     raise 'No Provider has been configured; there can be no features. Please see "EightBall.provider="' unless @provider
 
-    @provider.features
+    provider.features
   end
 
   # "EightBall, is the feature named 'NewFeature' enabled?"
@@ -55,7 +63,7 @@ module EightBall
   # @example
   #   EightBall.enabled? 'feature1', account_id: 1
   def self.enabled?(name, parameters = {})
-    feature = @provider.features.find { |f| f.name == name }
+    feature = provider.features.find { |f| f.name == name }
     return false unless feature
 
     feature.enabled? parameters
@@ -93,6 +101,25 @@ module EightBall
     return false unless block_given?
 
     yield if enabled? name, parameters
+  end
+
+  # Unmarshalls the {EightBall::Feature Features}. This can be useful for
+  # converting the data to, e.g., a JSON file.
+  #
+  # If a {EightBall::Marshallers Marshaller} is provided, use it.
+  #
+  # If no {EightBall::Marshallers Marshaller} is provided, uses the same
+  # Marshaller that the Provider is configured with.
+  #
+  # If the {EightBall::Providers Provider} does not expose a
+  # {EightBall::Marshallers Marshaller}, this will default to the
+  # {EightBall::Marshallers::Json JSON Marshaller}.
+  def self.marshall(marshaller = nil)
+    marshaller ||=
+      (provider.class.method_defined?(:marshaller) && provider.marshaller) ||
+      EightBall::Marshallers::Json.new
+
+    marshaller.marshall features
   end
 
   def self.logger
