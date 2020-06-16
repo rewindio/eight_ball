@@ -103,7 +103,7 @@ module EightBall
     yield if enabled? name, parameters
   end
 
-  # Unmarshalls the {EightBall::Feature Features}. This can be useful for
+  # Marshalls the {EightBall::Feature Features}. This can be useful for
   # converting the data to, e.g., a JSON file.
   #
   # If a {EightBall::Marshallers Marshaller} is provided, use it.
