@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   ### DEPENDENCIES
+
+  spec.add_dependency 'awrence', '~> 1.1'
   spec.add_dependency 'plissken', '~> 1.2'
 
   # Development
