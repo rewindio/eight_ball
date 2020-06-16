@@ -24,7 +24,7 @@ RSpec.configure do |config|
   SimpleCov.start do
     add_group 'Conditions', 'lib/eight_ball/conditions'
     add_group 'Providers', 'lib/eight_ball/providers'
-    add_group 'Parsers', 'lib/eight_ball/parsers'
+    add_group 'Marshallers', 'lib/eight_ball/marshallers'
     add_filter %r{^/spec/}
   end
 

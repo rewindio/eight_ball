@@ -5,7 +5,7 @@ require 'net/http'
 module EightBall::Providers
   # An HTTP Provider will make a GET request to a given URI, and convert
   # the response into an array of {EightBall::Feature Features} using the
-  # given {EightBall::Parsers Parser}.
+  # given {EightBall::Marshallers Marshaller}.
   #
   # The {EightBall::Feature Features} will be automatically kept up to date
   # according to the given {EightBall::Providers::RefreshPolicies RefreshPolicy}.
@@ -15,10 +15,10 @@ module EightBall::Providers
     # @param uri [String] The URI to GET the {EightBall::Feature Features} from.
     # @param options [Hash] The options to create the Provider with.
     #
-    # @option options [EightBall::Parsers] :parser
-    #   The {EightBall::Parsers Parser} used to convert the response to an array
+    # @option options [EightBall::Marshallers] :marshaller
+    #   The {EightBall::Marshallers Marshaller} used to convert the response to an array
     #   of {EightBall::Feature Features}. Defaults to an instance of
-    #   {EightBall::Parsers::Json}
+    #   {EightBall::Marshallers::Json}
     #
     # @option options [EightBall::Providers::RefreshPolicies] :refresh_policy
     #   The {EightBall::Providers::RefreshPolicies Policy} used to determine
@@ -36,7 +36,7 @@ module EightBall::Providers
 
       @uri = URI.parse uri
 
-      @parser = options[:parser] || EightBall::Parsers::Json.new
+      @marshaller = options[:marshaller] || EightBall::Marshallers::Json.new
       @policy = options[:refresh_policy] || EightBall::Providers::RefreshPolicies::Interval.new
     end
 
@@ -50,7 +50,7 @@ module EightBall::Providers
     private
 
     def fetch
-      @features = @parser.parse Net::HTTP.get(@uri)
+      @features = @marshaller.unmarshall Net::HTTP.get(@uri)
     rescue StandardError => e
       EightBall.logger.error { "Failed to fetch data from #{@uri}: #{e.message}" }
       @features = []

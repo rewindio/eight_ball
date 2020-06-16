@@ -11,7 +11,6 @@ require 'eight_ball/conditions/list'
 require 'eight_ball/conditions/never'
 require 'eight_ball/conditions/range'
 
-require 'eight_ball/parsers/json'
 require 'eight_ball/marshallers/json'
 
 require 'eight_ball/providers/http'

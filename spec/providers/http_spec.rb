@@ -38,13 +38,13 @@ RSpec.describe EightBall::Providers::Http do
       provider.features
     end
 
-    it 'should use provided parser to parse response' do
+    it 'should use provided marshaller to unmarshall response' do
       allow(Net::HTTP).to receive(:get).and_return @file
 
-      parser_double = double
-      expect(parser_double).to receive(:parse).and_return ['features']
+      marshaller_double = double
+      expect(marshaller_double).to receive(:unmarshall).and_return ['features']
 
-      expect(EightBall::Providers::Http.new(@uri, parser: parser_double).features).to contain_exactly 'features'
+      expect(EightBall::Providers::Http.new(@uri, marshaller: marshaller_double).features).to contain_exactly 'features'
     end
 
     it 'should use provided policy to refresh data' do

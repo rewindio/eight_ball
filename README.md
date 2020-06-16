@@ -42,8 +42,8 @@ json_input = %(
 )
 
 # Transform the JSON into a list of Features
-parser = EightBall::Parsers::Json.new
-features = parser.parse json_input
+marshaller = EightBall::Marshallers::Json.new
+features = marshaller.unmarshall json_input
 
 # Tell EightBall about these Features
 EightBall.provider = EightBall::Providers::Static.new features
@@ -76,7 +76,7 @@ A Condition must either be `true` or `false`. It describes when a Feature is ena
 A Provider is able to give EightBall the list of Features it needs to answer queries.
 
 **Supported Providers**
-- [HTTP](lib/eight_ball/providers/http.rb): Connect to a URL and use the given Parser to convert the response into a list of Features.
+- [HTTP](lib/eight_ball/providers/http.rb): Connect to a URL and use the given Marshaller to convert the response into a list of Features.
 - [Static](lib/eight_ball/providers/static.rb): Once initialized with a list of Features, always provides that same list of Features.
 
 #### RefreshPolicies
@@ -85,11 +85,11 @@ Some Providers are able to automatically "refresh" their list of Features using 
 **Supported RefreshPolicies**
 - [Interval](lib/eight_ball/providers/refresh_policies/interval.rb): The data is considered fresh for a given number of seconds, after which it is considered stale and should be refreshed.
 
-### Parser
-A Parser converts the given input to an array of Features.
+### Marshallers
+A Marshaller converts Features to and from another format.
 
-**Supported Parsers**
-- [JSON](lib/eight_ball/parsers/json.rb)
+**Supported Marshaller**
+- [JSON](lib/eight_ball/marshallers/json.rb)
 
 ## Development
 
