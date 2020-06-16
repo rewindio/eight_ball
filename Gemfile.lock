@@ -25,7 +25,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
-    rake (12.3.3)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -66,7 +66,7 @@ DEPENDENCIES
   eight_ball!
   inch (~> 0.8)
   pry-byebug (~> 3.6)
-  rake (~> 12.3.3)
+  rake (~> 13.0)
   rspec (~> 3.9.0)
   simplecov (~> 0.16)
   simplecov-console (~> 0.4)
