@@ -22,7 +22,7 @@ describe EightBall do
   context 'without a provider configured' do
     describe 'features' do
       it 'should raise an error if no provider has been configured' do
-        expect { EightBall.features }.to raise_error RuntimeError, 'No Provider has been configured; there can be no features. Please see "EightBall.provider="'
+        expect { EightBall.features }.to raise_error EightBall::ConfigurationError, 'No Provider has been configured; there can be no features. Please see "EightBall.provider="'
       end
     end
   end

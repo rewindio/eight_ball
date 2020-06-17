@@ -3,6 +3,8 @@
 require 'eight_ball/version'
 require 'eight_ball/feature'
 
+require 'eight_ball/configuration_error'
+
 require 'eight_ball/conditions/conditions'
 require 'eight_ball/conditions/base'
 
@@ -46,7 +48,7 @@ module EightBall
   #
   # @return [Array<EightBall::Feature>]
   def self.features
-    raise 'No Provider has been configured; there can be no features. Please see "EightBall.provider="' unless @provider
+    raise EightBall::ConfigurationError, 'No Provider has been configured; there can be no features. Please see "EightBall.provider="' unless provider
 
     provider.features
   end
