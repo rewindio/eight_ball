@@ -46,9 +46,9 @@ module EightBall::Marshallers
     #   json_string = <Read from somewhere>
     #
     #   marshaller = EightBall::Marshallers::Json.new
-    #   marshaller.unmarshall json_string => [Features]
+    #   marshaller.marshall [Array<EightBall::Feature>] => json
     def marshall(features)
-      JSON.pretty_generate(features.map { |feature| feature_to_hash(feature).to_camelback_keys })
+      JSON.generate(features.map { |feature| feature_to_hash(feature).to_camelback_keys })
     end
 
     # Convert the given JSON into a list of {EightBall::Feature Features}.

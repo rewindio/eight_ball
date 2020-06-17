@@ -4,7 +4,7 @@ RSpec.describe EightBall::Marshallers::Json do
   let(:marshaller) { EightBall::Marshallers::Json.new }
 
   describe 'marshall' do
-    it 'should convert an array of Features into pretty-printed JSON' do
+    it 'should convert an array of Features into JSON' do
       features = [
         EightBall::Feature.new(
           'WithConditions',
@@ -13,30 +13,7 @@ RSpec.describe EightBall::Marshallers::Json do
         )
       ]
 
-      json = <<~JSON.chomp
-        [
-          {
-            "name": "WithConditions",
-            "enabledFor": [
-              {
-                "type": "list",
-                "values": [
-                  1,
-                  2,
-                  3,
-                  4
-                ],
-                "parameter": "param1"
-              }
-            ],
-            "disabledFor": [
-              {
-                "type": "never"
-              }
-            ]
-          }
-        ]
-      JSON
+      json = '[{"name":"WithConditions","enabledFor":[{"type":"list","values":[1,2,3,4],"parameter":"param1"}],"disabledFor":[{"type":"never"}]}]'
 
       expect(marshaller.marshall(features)).to eq json
     end
@@ -44,18 +21,7 @@ RSpec.describe EightBall::Marshallers::Json do
     it 'should not include disabledFor key if empty' do
       features = [EightBall::Feature.new('WithConditions', [EightBall::Conditions::Always.new])]
 
-      json = <<~JSON.chomp
-        [
-          {
-            "name": "WithConditions",
-            "enabledFor": [
-              {
-                "type": "always"
-              }
-            ]
-          }
-        ]
-      JSON
+      json = '[{"name":"WithConditions","enabledFor":[{"type":"always"}]}]'
 
       expect(marshaller.marshall(features)).to eq json
     end
@@ -63,18 +29,7 @@ RSpec.describe EightBall::Marshallers::Json do
     it 'should not include enabledFor key if empty' do
       features = [EightBall::Feature.new('WithConditions', nil, [EightBall::Conditions::Always.new])]
 
-      json = <<~JSON.chomp
-        [
-          {
-            "name": "WithConditions",
-            "disabledFor": [
-              {
-                "type": "always"
-              }
-            ]
-          }
-        ]
-      JSON
+      json = '[{"name":"WithConditions","disabledFor":[{"type":"always"}]}]'
 
       expect(marshaller.marshall(features)).to eq json
     end
@@ -88,23 +43,7 @@ RSpec.describe EightBall::Marshallers::Json do
         )
       ]
 
-      json = <<~JSON.chomp
-        [
-          {
-            "name": "WithConditions",
-            "enabledFor": [
-              {
-                "type": "always"
-              }
-            ],
-            "disabledFor": [
-              {
-                "type": "never"
-              }
-            ]
-          }
-        ]
-      JSON
+      json = '[{"name":"WithConditions","enabledFor":[{"type":"always"}],"disabledFor":[{"type":"never"}]}]'
 
       expect(marshaller.marshall(features)).to eq json
     end
