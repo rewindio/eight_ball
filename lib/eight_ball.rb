@@ -116,7 +116,7 @@ module EightBall
   # {EightBall::Marshallers::Json JSON Marshaller}.
   def self.marshall(marshaller = nil)
     marshaller ||=
-      (provider.class.method_defined?(:marshaller) && provider.marshaller) ||
+      (provider.respond_to?(:marshaller) && provider.marshaller) ||
       EightBall::Marshallers::Json.new
 
     marshaller.marshall features
