@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-require 'test_helper'
-
 describe EightBall::Providers::RefreshPolicies::Interval do
   describe 'refresh' do
     it 'should yield on first call' do
       policy = EightBall::Providers::RefreshPolicies::Interval.new
 
-      call_me = stub
-      call_me.stubs(:call).once
-
-      policy.refresh do
-        call_me.call
-      end
+      expect { |b| policy.refresh(&b) }.to yield_control
     end
 
     it 'should yield if stale' do
@@ -20,16 +13,11 @@ describe EightBall::Providers::RefreshPolicies::Interval do
 
       d1 = DateTime.now
       d2 = d1 + Rational(61, 86_400)
-      DateTime.stubs(:now).returns d1, d2
+      allow(DateTime).to receive(:now).and_return d1, d2
 
-      policy.refresh {}
-
-      call_me = stub
-      call_me.stubs(:call).once
-
-      policy.refresh do
-        call_me.call
-      end
+      # Yields both times (first call ever, and on expired interval)
+      expect { |b| policy.refresh(&b) }.to yield_control
+      expect { |b| policy.refresh(&b) }.to yield_control
     end
 
     it 'should not yield if not stale' do
@@ -37,13 +25,11 @@ describe EightBall::Providers::RefreshPolicies::Interval do
 
       d1 = DateTime.now
       d2 = d1 + Rational(10, 86_400)
-      DateTime.stubs(:now).returns d1, d2
+      allow(DateTime).to receive(:now).and_return d1, d2
 
-      policy.refresh {}
-
-      policy.refresh do
-        flunk 'Should not have yielded'
-      end
+      # Yields only first time, not on a non-expired interval
+      expect { |b| policy.refresh(&b) }.to yield_control
+      expect { |b| policy.refresh(&b) }.not_to yield_control
     end
   end
 end

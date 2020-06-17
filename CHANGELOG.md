@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.0]
+ - [BREAKING] `Parsers` have been replaced with `Marshallers`, allowing bi-directional conversions
+ - Added `EightBall.marshall` as a way to output the Feature list to an external format (e.g. to create a JSON file)
+ - Added `EightBall.features` as a shortcut to `EightBall.provider.features`
+ - Testing framework has been moved from Minitest to rspec
+ - Updated dev dependencies
+
 ## [1.0.5]
 Security: Update rake to >= 12.3.3
 
@@ -14,4 +21,3 @@ Security: Update yard 0.9.16 -> 0.9.20
 
 ## [1.0.0]
 Initial release!
-
