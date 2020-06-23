@@ -86,6 +86,23 @@ describe EightBall do
     end
 
     describe 'marshall' do
+      it 'uses the given features' do
+        marshaller_double = double
+        features_double = double
+
+        expect(marshaller_double).to receive(:marshall).with features_double
+
+        EightBall.marshall(marshaller_double, features_double)
+      end
+
+      it 'falls back to the features from the Provider if none are passed in' do
+        marshaller_double = double
+
+        expect(marshaller_double).to receive(:marshall).with EightBall.features
+
+        EightBall.marshall(marshaller_double)
+      end
+
       it 'uses the given Marshaller' do
         marshaller_double = double
 

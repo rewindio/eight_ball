@@ -116,7 +116,7 @@ module EightBall
   # If the {EightBall::Providers Provider} does not expose a
   # {EightBall::Marshallers Marshaller}, this will default to the
   # {EightBall::Marshallers::Json JSON Marshaller}.
-  def self.marshall(marshaller = nil)
+  def self.marshall(marshaller = nil, features = EightBall.features)
     marshaller ||=
       (provider.respond_to?(:marshaller) && provider.marshaller) ||
       EightBall::Marshallers::Json.new

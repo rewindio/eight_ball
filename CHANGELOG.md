@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.0]
+ - Add `features` parameter to `EightBall.marshall` to allow marshalling any Features, not just the ones
+   from the configured Provider.
+
 ## [2.0.0]
  - [BREAKING] `Parsers` have been replaced with `Marshallers`, allowing bi-directional conversions
  - Added `EightBall.marshall` as a way to output the Feature list to an external format (e.g. to create a JSON file)
