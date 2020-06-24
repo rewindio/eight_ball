@@ -33,4 +33,34 @@ RSpec.describe EightBall::Conditions::List do
       expect(list2.satisfied?('Jeremy')).to eq false
     end
   end
+
+  describe '==' do
+    it 'should return true for identical Lists' do
+      c1 = EightBall::Conditions::List.new parameter: 'id', values: [1, 2, 3]
+      c2 = EightBall::Conditions::List.new parameter: 'id', values: [1, 2, 3]
+
+      expect(c1 == c2).to be true
+    end
+
+    it 'should return true for Lists that have the same values in different order' do
+      c1 = EightBall::Conditions::List.new parameter: 'id', values: [1, 2, 3]
+      c2 = EightBall::Conditions::List.new parameter: 'id', values: [3, 2, 1]
+
+      expect(c1 == c2).to be true
+    end
+
+    it 'should return false for Lists with different values' do
+      c1 = EightBall::Conditions::List.new parameter: 'id', values: [1, 2, 3]
+      c2 = EightBall::Conditions::Base.new parameter: 'id', values: [4, 5, 6]
+
+      expect(c1 == c2).to be false
+    end
+
+    it 'should return false for Lists with different paramter names' do
+      c1 = EightBall::Conditions::List.new parameter: 'id', values: [1, 2, 3]
+      c2 = EightBall::Conditions::Base.new parameter: 'id2', values: [1, 2, 3]
+
+      expect(c1 == c2).to be false
+    end
+  end
 end

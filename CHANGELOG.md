@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.2.0]
+ - Add `==` to `Feature` and `Conditions`
+
 ## [2.1.0]
  - Add `features` parameter to `EightBall.marshall` to allow marshalling any Features, not just the ones
    from the configured Provider.

@@ -12,7 +12,20 @@ module EightBall::Conditions
       raise 'You can never satisfy the Base condition'
     end
 
+    def ==(other)
+      other.class == self.class && other.state == state
+    end
+    alias eql? ==
+
+    def hash
+      state.hash
+    end
+
     protected
+
+    def state
+      [@parameter]
+    end
 
     def parameter=(parameter)
       return if parameter.nil?
