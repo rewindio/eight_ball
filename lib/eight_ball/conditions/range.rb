@@ -44,5 +44,11 @@ module EightBall::Conditions
     def satisfied?(value)
       value >= min && value <= max
     end
+
+    protected
+
+    def state
+      super + [@min, @max]
+    end
   end
 end

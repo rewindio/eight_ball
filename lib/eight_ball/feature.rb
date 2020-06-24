@@ -48,6 +48,15 @@ module EightBall
       any_satisfied?(@enabled_for, parameters) && !any_satisfied?(@disabled_for, parameters)
     end
 
+    def ==(other)
+      name == other.name &&
+        enabled_for.size == other.enabled_for.size &&
+        enabled_for.all? { |condition| other.enabled_for.any? { |other_condition| condition == other_condition } } &&
+        disabled_for.size == other.disabled_for.size &&
+        disabled_for.all? { |condition| other.disabled_for.any? { |other_condition| condition == other_condition } }
+    end
+    alias eql? ==
+
     private
 
     def any_satisfied?(conditions, parameters)

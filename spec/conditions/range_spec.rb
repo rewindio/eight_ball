@@ -56,4 +56,27 @@ RSpec.describe EightBall::Conditions::Range do
       expect(range2.satisfied?('d')).to be false
     end
   end
+
+  describe '==' do
+    it 'should return true for identical Ranges' do
+      c1 = EightBall::Conditions::Range.new parameter: 'id', min: 1, max: 2
+      c2 = EightBall::Conditions::Range.new parameter: 'id', min: 1, max: 2
+
+      expect(c1 == c2).to be true
+    end
+
+    it 'should return false for Ranges with different values' do
+      c1 = EightBall::Conditions::Range.new parameter: 'id', min: 1, max: 2
+      c2 = EightBall::Conditions::Range.new parameter: 'id', min: 3, max: 4
+
+      expect(c1 == c2).to be false
+    end
+
+    it 'should return false for Ranges with different paramter names' do
+      c1 = EightBall::Conditions::Range.new parameter: 'id', min: 1, max: 2
+      c2 = EightBall::Conditions::Range.new parameter: 'id2', min: 1, max: 2
+
+      expect(c1 == c2).to be false
+    end
+  end
 end

@@ -77,4 +77,79 @@ RSpec.describe EightBall::Feature do
       feature.enabled? param1: 1
     end
   end
+
+  describe '==' do
+    it 'should return false if the names do not match' do
+      f1 = EightBall::Feature.new 'name1'
+      f2 = EightBall::Feature.new 'name2'
+
+      expect(f1 == f2).to be false
+    end
+
+    it 'should return false if the number of "enabled for" conditions differ' do
+      f1 = EightBall::Feature.new 'name1', [EightBall::Conditions::Always.new, EightBall::Conditions::Always.new]
+      f2 = EightBall::Feature.new 'name1', [EightBall::Conditions::Always.new]
+
+      expect(f1 == f2).to be false
+    end
+
+    it 'should return false if the number of "disabled for" conditions differ' do
+      f1 = EightBall::Feature.new 'name1', [], [EightBall::Conditions::Always.new, EightBall::Conditions::Always.new]
+      f2 = EightBall::Feature.new 'name1', [], [EightBall::Conditions::Always.new]
+
+      expect(f1 == f2).to be false
+    end
+
+    it 'should return true if every "enabled for" condition is matched, regardless of order' do
+      f1 = EightBall::Feature.new('name1', [
+        EightBall::Conditions::Range.new(min: 1, max: 2),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+      f2 = EightBall::Feature.new('name1', [
+        EightBall::Conditions::List.new(values: [1, 2, 3]),
+        EightBall::Conditions::Range.new(min: 1, max: 2)
+      ])
+
+      expect(f1 == f2).to be true
+    end
+
+    it 'should return false if a single "enabled for" condition is not matched' do
+      f1 = EightBall::Feature.new('name1', [
+        EightBall::Conditions::Range.new(min: 1, max: 2),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+      f2 = EightBall::Feature.new('name1', [
+        EightBall::Conditions::Range.new(min: 3, max: 4),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+
+      expect(f1 == f2).to be false
+    end
+
+    it 'should return true if every "disabled for" condition is matched, regardless of order' do
+      f1 = EightBall::Feature.new('name1', [], [
+        EightBall::Conditions::Range.new(min: 1, max: 2),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+      f2 = EightBall::Feature.new('name1', [], [
+        EightBall::Conditions::List.new(values: [1, 2, 3]),
+        EightBall::Conditions::Range.new(min: 1, max: 2)
+      ])
+
+      expect(f1 == f2).to be true
+    end
+
+    it 'should return false if a single "disabled for" condition is not matched' do
+      f1 = EightBall::Feature.new('name1', [], [
+        EightBall::Conditions::Range.new(min: 1, max: 2),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+      f2 = EightBall::Feature.new('name1', [], [
+        EightBall::Conditions::Range.new(min: 3, max: 4),
+        EightBall::Conditions::List.new(values: [1, 2, 3])
+      ])
+
+      expect(f1 == f2).to be false
+    end
+  end
 end

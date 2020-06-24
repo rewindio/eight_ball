@@ -31,5 +31,11 @@ module EightBall::Conditions
     def satisfied?(value)
       values.include? value
     end
+
+    protected
+
+    def state
+      super + [@values.sort]
+    end
   end
 end
