@@ -11,7 +11,7 @@ jobs:
   release:
     uses: rewindio/github-action-common/.github/workflows/tag-and-release.yml@v1
     with:
-      registry: github
+      registry: rubygems
       ruby_version: 2.7
     secrets:
       REGISTRY_API_KEY: ${{ secrets.GITHUB_TOKEN }}
