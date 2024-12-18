@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.0.0]
+
+- Removes passing block to logger for `http.rb` and `json.rb`
+- Updates developer dependancies
+
 ## [2.2.1]
 
 - Switch release to github actions
