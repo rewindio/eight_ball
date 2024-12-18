@@ -73,7 +73,7 @@ module EightBall::Marshallers
         EightBall::Feature.new feature[:name], enabled_for, disabled_for
       end
     rescue JSON::ParserError => e
-      EightBall.logger.error { "Failed to parse JSON: #{e.message}" }
+      EightBall.logger.error "Failed to parse JSON: #{e.message}"
       []
     end
 

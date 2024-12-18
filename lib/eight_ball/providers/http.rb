@@ -54,7 +54,7 @@ module EightBall::Providers
     def fetch
       @features = @marshaller.unmarshall Net::HTTP.get(@uri)
     rescue StandardError => e
-      EightBall.logger.error { "Failed to fetch data from #{@uri}: #{e.message}" }
+      EightBall.logger.error "Failed to fetch data from #{@uri}: #{e.message}"
       @features = []
     end
   end
