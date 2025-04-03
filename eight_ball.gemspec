@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/rewindio/eight_ball'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = '>= 2.5.0'
+  spec.required_ruby_version = '~> 3.2'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|.github|examples)/}) }
   spec.bindir        = 'exe'
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'awrence', '~> 1.1'
   spec.add_dependency 'plissken', '~> 1.2'
+  spec.add_dependency 'logger', '~> 1.7'
 
   # Development
   spec.add_development_dependency 'bundler', '>= 1'
