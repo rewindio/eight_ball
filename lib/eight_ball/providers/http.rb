@@ -34,7 +34,7 @@ module EightBall::Providers
     #     refresh_policy: EightBall::Providers::RefreshPolicies::Interval.new 120
     #   )
     def initialize(uri, options = {})
-      raise ArgumentError, 'Invalid HTTP/HTTPS URI provided' unless uri =~ URI.regexp(SUPPORTED_SCHEMES)
+      raise ArgumentError, 'Invalid HTTP/HTTPS URI provided' unless uri =~ URI::DEFAULT_PARSER.make_regexp(SUPPORTED_SCHEMES)
 
       @uri = URI.parse uri
 

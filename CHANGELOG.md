@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.3.0]
+
+- Update to ruby 3.2.8
+- Address deprecation warning for URI.regexp
+- Update to bundler 2
+
 ## [2.2.1]
 
 - Switch release to github actions
