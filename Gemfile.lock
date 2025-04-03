@@ -66,7 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (>= 1)
+  bundler (~> 2)
   eight_ball!
   inch (~> 0.8)
   pry-byebug (~> 3.6)

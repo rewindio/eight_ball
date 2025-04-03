@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/rewindio/eight_ball'
   spec.license       = 'MIT'
 
-  spec.required_ruby_version = '~> 3.2'
+  spec.required_ruby_version = '~> 3.1'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|.github|examples)/}) }
   spec.bindir        = 'exe'
@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'logger', '~> 1.7'
 
   # Development
-  spec.add_development_dependency 'bundler', '>= 1'
+  spec.add_development_dependency 'bundler', '~> 2'
   spec.add_development_dependency 'inch', '~> 0.8'
   spec.add_development_dependency 'pry-byebug', '~> 3.6'
   spec.add_development_dependency 'rake', '~> 13.0'
