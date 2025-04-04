@@ -12,6 +12,9 @@ module EightBall::Providers
   class Http
     SUPPORTED_SCHEMES = %w[http https].freeze
 
+    URI_PARSER = defined?(::URI::RFC2396_PARSER) ? ::URI::RFC2396_PARSER : ::URI::DEFAULT_PARSER
+    private_constant :URI_PARSER
+
     attr_reader :marshaller
 
     # @param uri [String] The URI to GET the {EightBall::Feature Features} from.
@@ -34,7 +37,7 @@ module EightBall::Providers
     #     refresh_policy: EightBall::Providers::RefreshPolicies::Interval.new 120
     #   )
     def initialize(uri, options = {})
-      raise ArgumentError, 'Invalid HTTP/HTTPS URI provided' unless uri =~ URI.regexp(SUPPORTED_SCHEMES)
+      raise ArgumentError, 'Invalid HTTP/HTTPS URI provided' unless uri =~ URI_PARSER.make_regexp(SUPPORTED_SCHEMES)
 
       @uri = URI.parse uri
 
