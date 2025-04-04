@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.1]
+
+- Fix release workflow to use ruby/setup-ruby instead of actions/setup-ruby
+
 ## [3.0.0]
 
 - Update to ruby 3.2.8
