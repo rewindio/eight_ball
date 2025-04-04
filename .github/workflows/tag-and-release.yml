@@ -14,9 +14,10 @@ jobs:
     - uses: actions/checkout@main
 
     - name: Set up Ruby 3.2.8
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.2.8
+        bundler-cache: true
 
     - name: Get version
       id: get_version
