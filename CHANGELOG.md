@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.1.0]
+
+- Upgrade Ruby to 3.3.10
+
 ## [3.0.1]
 
 - Fix release workflow to use ruby/setup-ruby instead of actions/setup-ruby
